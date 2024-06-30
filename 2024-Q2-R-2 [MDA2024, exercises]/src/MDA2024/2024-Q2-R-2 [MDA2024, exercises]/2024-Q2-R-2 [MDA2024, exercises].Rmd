@@ -161,6 +161,8 @@ The interpretation of the *Correlation Index* called **r** is following:
 - 0.25 < |r| <= 0.50 *Medium-Low Correlation*
 - 0.50 < |r| <= 0.75 *Medium-High Correlation*
 - 0.75 < |r| <= 1.00 *High Correlation*
+- 0 *No Correlation*
+- 1 *Perfect Correlation*
 
 The correlation between *Sepal Length* and *Sepal Width* is -0.118 and it is a low negative correlation.
 
@@ -193,6 +195,13 @@ ggplot(data = X) +
 ggplot(data = X) +
   geom_point(mapping = aes(Sepal.Length, Sepal.Width)) +
   ggtitle("Scatter Plot") + xlab("Sepal Length") + ylab("Sepal Width")
+```
+
+## 4.1. Correlation Plot with colors
+
+```{r}
+ggplot(data = X) +
+  geom_point(mapping = aes(Sepal.Length, Sepal.Width, color = Species))
 ```
 
 
