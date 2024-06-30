@@ -30,7 +30,22 @@ $$ y = \beta_0 + \beta_1X + \epsilon $$
 the formula can be reported in the text: $\mu = 1/n \sum X_i$
 
 # 2. Data Analysis
+To add R code in the Notebook we need to use the **Chunk**.
 
+```{r}
+X <- iris
+```
+
+It is possible to have an overview of the data by using the *summary* function.
+
+```{r}
+summary(X)
+```
+In R there are three main type of data:
+
+- **Matrix**. Mathematical Object.
+- **Data Frame**. It is devoted to organize and analyze data and it is a generalization of the Matrix.
+- **List**. It is an object that can include Data Frames, Matrices or other lists.
 
 
 
