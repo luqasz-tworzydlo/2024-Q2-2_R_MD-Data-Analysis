@@ -119,5 +119,16 @@ pie(T, main = "Pie Chart", col = terrain.colors(4))
 
 # 2.4. Histogram Chart
 
+Histogram is a plot used only for **Quantitative Data**, it is based on a frequency tables in classes. The *R* function is called *hist* and the input is a simple distribution of a quantitative variable.
+
+```{r}
+hist(X$Sepal.Length)
+```
+
+```{r}
+hist(X$Sepal.Width, main = "Histogram of Sepal Width", xlab = "Classes", ylab = "Absolute Frequency", col = "lightgreen", border = "blue")
+```
+
+# 3. Correlation Analysis
 
 
