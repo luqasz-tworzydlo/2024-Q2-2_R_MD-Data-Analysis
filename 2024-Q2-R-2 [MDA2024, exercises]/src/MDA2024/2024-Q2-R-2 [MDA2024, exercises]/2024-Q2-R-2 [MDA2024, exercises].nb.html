@@ -1821,16 +1821,56 @@ display: none;
 <!-- rnb-text-begin -->
 <p>In R there are three main type of data:</p>
 <ul>
-<li><strong>Matrix</strong>. Mathematical Object.</li>
+<li><strong>Matrix</strong>. Mathematical Object. In our example
+<strong>Y</strong> is a matrix.</li>
 <li><strong>Data Frame</strong>. It is devoted to organize and analyze
-data and it is a generalization of the Matrix.</li>
+data and it is a generalization of the Matrix. In our example,
+<strong>X</strong> is a data frame.</li>
 <li><strong>List</strong>. It is an object that can include Data Frames,
 Matrices or other lists.</li>
 </ul>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuWSA8LSBhcy5tYXRyaXgoWFsgLDE6NF0pXG5gYGAifQ== -->
+<pre class="r"><code>Y &lt;- as.matrix(X[ ,1:4])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To handle data you can use the following code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuWFsxMCwgMl0gICAgICMgc2VsZWN0aW9uIG9mIG9uZSBlbGVtZW50IGluIHRoZSBEYXRhIEZyYW1lIChvciBtYXRyaXgpXG5gYGAifQ== -->
+<pre class="r"><code>X[10, 2]     # selection of one element in the Data Frame (or matrix)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMVxuIn0= -->
+<pre><code>[1] 3.1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuWFs1OjIwLCAxOjNdICMgc2VsZWN0aW9uIG9mIGFuIGludGVydmFsXG5gYGAifQ== -->
+<pre class="r"><code>X[5:20, 1:3] # selection of an interval</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTYsIm5jb2wiOjMsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQTJWUzIwN0NRQkJkb054THVSVDFLMmhpZVBFTkhveFBQaGd2a2RkS0YyaXMyNllVOVZmMG0vUmpqTVpvVE5EWjdzd0t5eVRUMlRsejJUUFRQVCtlREJ1VEJtT3N4Q3dMdm1VNHN2TFY1Y25naURHckNFNkJXYXd1N1NPRTNUeVRNUWUwTSs2elhNWjdUMUtleDcxWkxocnZJdTZpcFR4M21JdTJYYlFIYVBkZnBMenEvRDcySlJ4OXpjTkd2STMxVGNOVzBkWXdyNFY5S1Y1RHZtUTdCbi9xYXlQdUlCOW5tOGZvVS9takg1V3YvUzlWdCtPVC9WYjM2UGdiK3UvWWgvSStGUCtkZXpCdS9MQ3k4Ty80VWhKVHZ6Y0g3UXVlK0pGM3lzVThXeURXVk5oMUdHaklQdVBaZjlwMjMzb2FQM2pVdTRYOTVidXBnRlpCNVJwbG9ueFdUZGtNOCtTUzJwamZCZTJCeWdmVk40bFBJMzlKeEFsc0JIN21lN01VN2dWdmJaUlU0eVFMWXdGRlJSZVpiQllYVWdOb3I0U2NJQmhNRnl0eE96ZzB3cVZFekhHQUFtb0xiV2ZqWEZJc2lyK0lWN0M4QW1zTEJhZHhJditHUjlRNTRQZDRkR0NQK1JxOUpBMUZSbk1DdXZTeUdOWlB5RFNPQ01rblorcy9xMFgxNjdjREFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.0","2":"3.6","3":"1.4","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","_rn_":"10"},{"1":"5.4","2":"3.7","3":"1.5","_rn_":"11"},{"1":"4.8","2":"3.4","3":"1.6","_rn_":"12"},{"1":"4.8","2":"3.0","3":"1.4","_rn_":"13"},{"1":"4.3","2":"3.0","3":"1.1","_rn_":"14"},{"1":"5.8","2":"4.0","3":"1.2","_rn_":"15"},{"1":"5.7","2":"4.4","3":"1.5","_rn_":"16"},{"1":"5.4","2":"3.9","3":"1.3","_rn_":"17"},{"1":"5.1","2":"3.5","3":"1.4","_rn_":"18"},{"1":"5.7","2":"3.8","3":"1.7","_rn_":"19"},{"1":"5.1","2":"3.8","3":"1.5","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[16]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuWFs1OjIwLCBdICAgICMgdGhlIGVtcHR5IHNwYWNlIHNlbGVjdCBhbGwgdGhlIGNvbHVtbnMgb3Igcm93c1xuYGBgIn0= -->
+<pre class="r"><code>X[5:20, ]    # the empty space select all the columns or rows</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTYsIm5jb2wiOjUsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQTZWVFMwN0RNQkExTktHMDlFc0xuS0tSRUJ0MmRJRllzVUI4QkZ1VHVzVWlPRkVTQ2xlQm0zQUVKRml4NGhnSWhFQkl3RGllc1ZxWEhaYW1ML05tUFBOc1QvZTNUemFxSjFYR1dJbDVIdno2OE1uOG84T2QzaVpqM2p3NGM4eGpGWTNYRU83b0tGZ0RyTlh2c21MMVYyNzB1dTB2RDR0bCtUYnlIVVRLNjJ3VXkySWJjUTF4OVVHdlI1dmZ4YnJFbzI5MTFKQnY0djRsQjh1SWk1aFh4N29VWDBTOWhDMUhQOVd0SWQ5QVBZMXBIVnZ2eHQvNk12blcvekQ3Wm56Q1Q5UEh4bC9RZjhVNmxQZG05TS8wd2JqVmNZLzdueEdmTUk5NHdqdkhkM2szL3V3ZzFYVVE1cVN1ZFJURDh5K2JHc0NGU0l4RmxHSGxFckdaeU9PTW8xY2RpelNUWVJ6RktUS1ZzVXhIVXNtUU8rWDhNT0paWm5WaXRTRVBjOWpMMkxlYnJ2aUZvSFFmeWRxQlNIZ1U3QW8xeXMrUVd6TGNzUnhZcXJZbjhwazB3MDJtbFE4U0VVcmRaS3B6SlkydkF1cGV0d3BBck40RHBzZTJPTHd1cTl0aG5oNkdKdWEzd1piQjlCKzRheHFVZnB6RFZ3Yzg1OEV3aFZaL1hFQTVUbklaS3hBeDM4SG1rNXZuVW9kb1hpb3RldEFMenk3VmVXL2RDWmNTTlVMTjlPQjF4TmJFdDI5VWVLUjFnUjRLN2xJcVFZOFQ4Vk1SVWVXQkdPTm5BNjZ1dUxrZ1NhWEs2WnpBWmtFZXcvMFRBeE5EVEhGeTl2MExDa2tnUHhvRkFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"},{"1":"5.4","2":"3.7","3":"1.5","4":"0.2","5":"setosa","_rn_":"11"},{"1":"4.8","2":"3.4","3":"1.6","4":"0.2","5":"setosa","_rn_":"12"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.1","5":"setosa","_rn_":"13"},{"1":"4.3","2":"3.0","3":"1.1","4":"0.1","5":"setosa","_rn_":"14"},{"1":"5.8","2":"4.0","3":"1.2","4":"0.2","5":"setosa","_rn_":"15"},{"1":"5.7","2":"4.4","3":"1.5","4":"0.4","5":"setosa","_rn_":"16"},{"1":"5.4","2":"3.9","3":"1.3","4":"0.4","5":"setosa","_rn_":"17"},{"1":"5.1","2":"3.5","3":"1.4","4":"0.3","5":"setosa","_rn_":"18"},{"1":"5.7","2":"3.8","3":"1.7","4":"0.3","5":"setosa","_rn_":"19"},{"1":"5.1","2":"3.8","3":"1.5","4":"0.3","5":"setosa","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[16]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTXkgRmlyc3QgTm90ZWJvb2sgTURBMjAyNCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBJbnRyb2R1Y3Rpb24KCgojIDEuIERhdGEgRGVzY3JpcHRpb24KCiMgMS4xLiBTYW1wbGUgU2VsZWN0ZWQKCllvdSBjYW4gZGVmaW5lIGJ1bGxldCBsaXN0IG9yIG51bWJlcmVkIGxpc3Q6CgotIFBpenphCi0gUGFzdGEKLSBDYWZlCiAgLSBFc3ByZXNzbwogIC0gTWFjY2hpYXRvCiAgLSBDYXBwdWNjaW5vCi0gVm9ka2EKICAtIEJpc29udCBHcmFzcwogIC0gU29wbGljYQoKIyAxLjIgRm9ybXVsYQoKSGVyZSB5b3UgY2FuIGRlZmluZSBmb3JtdWxhCgokJCB5ID0gXGJldGFfMCArIFxiZXRhXzFYICsgXGVwc2lsb24gJCQKdGhlIGZvcm11bGEgY2FuIGJlIHJlcG9ydGVkIGluIHRoZSB0ZXh0OiAkXG11ID0gMS9uIFxzdW0gWF9pJAoKIyAyLiBEYXRhIEFuYWx5c2lzClRvIGFkZCBSIGNvZGUgaW4gdGhlIE5vdGVib29rIHdlIG5lZWQgdG8gdXNlIHRoZSAqKkNodW5rKiouCgpgYGB7cn0KWCA8LSBpcmlzCmBgYAoKSXQgaXMgcG9zc2libGUgdG8gaGF2ZSBhbiBvdmVydmlldyBvZiB0aGUgZGF0YSBieSB1c2luZyB0aGUgKnN1bW1hcnkqIGZ1bmN0aW9uLgoKYGBge3J9CnN1bW1hcnkoWCkKYGBgCkluIFIgdGhlcmUgYXJlIHRocmVlIG1haW4gdHlwZSBvZiBkYXRhOgoKLSAqKk1hdHJpeCoqLiBNYXRoZW1hdGljYWwgT2JqZWN0LgotICoqRGF0YSBGcmFtZSoqLiBJdCBpcyBkZXZvdGVkIHRvIG9yZ2FuaXplIGFuZCBhbmFseXplIGRhdGEgYW5kIGl0IGlzIGEgZ2VuZXJhbGl6YXRpb24gb2YgdGhlIE1hdHJpeC4KLSAqKkxpc3QqKi4gSXQgaXMgYW4gb2JqZWN0IHRoYXQgY2FuIGluY2x1ZGUgRGF0YSBGcmFtZXMsIE1hdHJpY2VzIG9yIG90aGVyIGxpc3RzLgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTXkgRmlyc3QgTm90ZWJvb2sgTURBMjAyNCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBJbnRyb2R1Y3Rpb24KCgojIDEuIERhdGEgRGVzY3JpcHRpb24KCiMgMS4xLiBTYW1wbGUgU2VsZWN0ZWQKCllvdSBjYW4gZGVmaW5lIGJ1bGxldCBsaXN0IG9yIG51bWJlcmVkIGxpc3Q6CgotIFBpenphCi0gUGFzdGEKLSBDYWZlCiAgLSBFc3ByZXNzbwogIC0gTWFjY2hpYXRvCiAgLSBDYXBwdWNjaW5vCi0gVm9ka2EKICAtIEJpc29udCBHcmFzcwogIC0gU29wbGljYQoKIyAxLjIgRm9ybXVsYQoKSGVyZSB5b3UgY2FuIGRlZmluZSBmb3JtdWxhCgokJCB5ID0gXGJldGFfMCArIFxiZXRhXzFYICsgXGVwc2lsb24gJCQKdGhlIGZvcm11bGEgY2FuIGJlIHJlcG9ydGVkIGluIHRoZSB0ZXh0OiAkXG11ID0gMS9uIFxzdW0gWF9pJAoKIyAyLiBEYXRhIEFuYWx5c2lzClRvIGFkZCBSIGNvZGUgaW4gdGhlIE5vdGVib29rIHdlIG5lZWQgdG8gdXNlIHRoZSAqKkNodW5rKiouCgpgYGB7cn0KWCA8LSBpcmlzCmBgYAoKSXQgaXMgcG9zc2libGUgdG8gaGF2ZSBhbiBvdmVydmlldyBvZiB0aGUgZGF0YSBieSB1c2luZyB0aGUgKnN1bW1hcnkqIGZ1bmN0aW9uLgoKYGBge3J9CnN1bW1hcnkoWCkKYGBgCkluIFIgdGhlcmUgYXJlIHRocmVlIG1haW4gdHlwZSBvZiBkYXRhOgoKLSAqKk1hdHJpeCoqLiBNYXRoZW1hdGljYWwgT2JqZWN0LiBJbiBvdXIgZXhhbXBsZSAqKlkqKiBpcyBhIG1hdHJpeC4KLSAqKkRhdGEgRnJhbWUqKi4gSXQgaXMgZGV2b3RlZCB0byBvcmdhbml6ZSBhbmQgYW5hbHl6ZSBkYXRhIGFuZCBpdCBpcyBhIGdlbmVyYWxpemF0aW9uIG9mIHRoZSBNYXRyaXguIEluIG91ciBleGFtcGxlLCAqKlgqKiBpcyBhIGRhdGEgZnJhbWUuCi0gKipMaXN0KiouIEl0IGlzIGFuIG9iamVjdCB0aGF0IGNhbiBpbmNsdWRlIERhdGEgRnJhbWVzLCBNYXRyaWNlcyBvciBvdGhlciBsaXN0cy4KCmBgYHtyfQpZIDwtIGFzLm1hdHJpeChYWyAsMTo0XSkKYGBgCgpUbyBoYW5kbGUgZGF0YSB5b3UgY2FuIHVzZSB0aGUgZm9sbG93aW5nIGNvZGU6CgpgYGB7cn0KWFsxMCwgMl0gICAgICMgc2VsZWN0aW9uIG9mIG9uZSBlbGVtZW50IGluIHRoZSBEYXRhIEZyYW1lIChvciBtYXRyaXgpClhbNToyMCwgMTozXSAjIHNlbGVjdGlvbiBvZiBhbiBpbnRlcnZhbApYWzU6MjAsIF0gICAgIyB0aGUgZW1wdHkgc3BhY2Ugc2VsZWN0IGFsbCB0aGUgY29sdW1ucyBvciByb3dzCmBgYAoKCgoKCg==</div>
 
 
 
