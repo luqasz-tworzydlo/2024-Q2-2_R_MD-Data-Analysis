@@ -204,6 +204,29 @@ ggplot(data = X) +
   geom_point(mapping = aes(Sepal.Length, Sepal.Width, color = Species))
 ```
 
+## 4.2. Box Plot
 
+```{r}
+ggplot(data = X) +
+  geom_boxplot(mapping = aes(Sepal.Width), color = "blue", outlier.colour = "red", outlier.shape = 8, outlier.size = 3) +
+  ggtitle("Box Plot for Sepal Lenght")
+```
 
+Box Plot taking into account the 3 types of flowers
+
+```{r}
+ggplot(data = X) +
+  geom_boxplot(mapping = aes(Species, Sepal.Width), outlier.color = "red", outlier.shape = 8)
+```
+
+GGPLOT function as object
+
+```{r}
+p <- ggplot(data = X) +
+  geom_boxplot(mapping = aes(Species, Sepal.Width, fill = Species))
+p
+p + theme(legend.position = "bottom")
+```
+
+## 4.3. Use the mpg data (mpg Fuel economy data from 1999 to 2008 for 38 popular model of cars)
 
