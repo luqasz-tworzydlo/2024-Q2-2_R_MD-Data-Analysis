@@ -96,6 +96,21 @@ The *tilde symbol* is obtained by:
   - MAC: shift + button before no.1
   - WIN: shift + button before no.1
 
+## [ 2.1. BONUS ]
+
+The bold line is the **Median**, that is the value of the ordered distribution that leaves the same number of units above and below (or on left and right)
+
+- **Q1** is the first quartile. Q1 leaves 25% of unirs on left and 75% on right.
+- **Q3** is the third quartile. Q3 leaves 75% of units on left and 25% on right.
+- Wishers, **without outliers** are, the min and max of distribution
+- Wishers, **with outliers** are, Lmin = Q1-1.5*(Q3-Q1); Lsup = Q3+1.5*(Q3-Q1);
+
+```{r}
+boxplot(X$Sepal.Length, main = "Box-Plot of the Sepal Lenght", col = "green", horizontal = F)
+boxplot(X[ ,1:4], main = "Box-Plot with all the Variables", col = "blue", horizontal = F)
+boxplot(X$Sepal.Width ~ X$Species, main = "Box-Plot about Sepal Width with different type of IRIS Flowers")
+```
+
 # 2.2. Bar Plot
 
 Bar Plot can be used for **Qualitative Data** and for **Categorized Quantitative Data**. The first step to create a Bar Plot is to generate a *Table of Frequency*.
@@ -129,13 +144,41 @@ hist(X$Sepal.Length)
 hist(X$Sepal.Width, main = "Histogram of Sepal Width", xlab = "Classes", ylab = "Absolute Frequency", col = "lightgreen", border = "blue")
 ```
 
-# 3. Correlation Analysis
+## [ 2.4. BONUS ]
 
+he histogram can be used only for **quantitative variables**. 
+
+```{r}
+hist(X$Sepal.Width, main = "Histogram of the Sepal Width", xlab = "Classes",
+     ylab = "Absolute Frequency", col = "green", border = "red", breaks = 10)
+
+```
+
+In case of equally spaced (same size) classes we can report on the *Y* axis the Absolute Frequency or relative frequency. In case of classes with different sizes we have to report on *Y* axis the *density of frequency*. The formula is the following: $d_i = n_i/h_i$, where $n_i$ is the absolute frequency and $h_i$ is the size of the class.
+
+# 3. Correlation Analysis
 
 ## 3.1. Correlation Plot
 
 ```{r}
 plot(X$Sepal.Length, X$Sepal.Width, main = "Correlation Plot", xlab = "Sepal Length", ylab = "Sepal Width")
+```
+
+## [ 3.1. BONUS ]
+
+```{r}
+plot(X$Petal.Length, X$Petal.Width, main = "Correlation Plot",
+     xlab = "Petal Lenght", ylab = "Petal Width", col = "blue",
+     pch = 1)
+```
+
+Plots with IRIS
+
+```{r}
+plot(X$Sepal.Length, X$Sepal.Width, main = "(1-2) Plot with IRIS", 
+     xlab = "Sepal Lenght", ylab = "Sepal Width", col = "blue")
+plot(X$Petal.Length, X$Petal.Width, main = "(2-2) Plot with IRIS", 
+     xlab = "Petal Lenght", ylab = "Petal Width", col = "red")
 ```
 
 ## 3.2. Pair Plot
@@ -197,11 +240,30 @@ ggplot(data = X) +
   ggtitle("Scatter Plot") + xlab("Sepal Length") + ylab("Sepal Width")
 ```
 
-## 4.1. Correlation Plot with colors
+## 4.1. Correlation Plot (Scatter Plot) with colors
 
 ```{r}
 ggplot(data = X) +
   geom_point(mapping = aes(Sepal.Length, Sepal.Width, color = Species))
+```
+
+## [ 4.1. BONUS ]
+
+**STANDARD TEMPLATE IS:**
+  ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```{r}
+# First Example
+ggplot(data = X) + 
+  geom_point(mapping = aes(Petal.Length, Petal.Width, color = Species)) +
+  ggtitle("Petal Lenght and Width") +
+  xlab("Petal Lenght") + ylab("Petal Width")
+# Second Example
+ggplot(data = X, mapping = aes(Petal.Width, Petal.Length)) + 
+  geom_point(mapping = aes(color = Species)) +
+  ggtitle("Petal Width and Lenght") + 
+  xlab("Petal Width") + ylab("Petal Lenght")
 ```
 
 ## 4.2. Box Plot
@@ -226,6 +288,15 @@ p <- ggplot(data = X) +
   geom_boxplot(mapping = aes(Species, Sepal.Width, fill = Species))
 p
 p + theme(legend.position = "bottom")
+```
+
+## 4.3. Bar Plot
+
+```{r}
+ggplot(data = X) + 
+  geom_bar(mapping = aes(Species)) + 
+  ggtitle("Bar Plot with GGPLOT") + 
+  ylab("Absolute Frequency")
 ```
 
 # 5. Use the mpg data (mpg Fuel economy data from 1999 to 2008 for 38 popular model of cars)
