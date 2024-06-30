@@ -132,3 +132,69 @@ hist(X$Sepal.Width, main = "Histogram of Sepal Width", xlab = "Classes", ylab = 
 # 3. Correlation Analysis
 
 
+## 3.1. Correlation Plot
+
+```{r}
+plot(X$Sepal.Length, X$Sepal.Width, main = "Correlation Plot", xlab = "Sepal Length", ylab = "Sepal Width")
+```
+
+## 3.2. Pair Plot
+
+```{r}
+pairs(X[ ,1:4])
+```
+
+The plots below the main diagonal are the same of the plot above the main diagonal. The reason is because the plot and the correlation index are symmetric.
+
+```{r}
+r <- cor(X[ ,1:2])
+r <- round(r, 3)
+r
+cor(X$Sepal.Length, X$Sepal.Width)
+
+```
+
+The range of correlation index is: *-1 <= r <= 1*
+The interpretation of the *Correlation Index* called **r** is following:
+
+- 0.00 < |r| <= 0.25 *Low Correlation*
+- 0.25 < |r| <= 0.50 *Medium-Low Correlation*
+- 0.50 < |r| <= 0.75 *Medium-High Correlation*
+- 0.75 < |r| <= 1.00 *High Correlation*
+
+The correlation between *Sepal Length* and *Sepal Width* is -0.118 and it is a low negative correlation.
+
+# 4. Plots with GGPLOT Package
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+GGPLOTS has 3 main arguments:
+
+- The first argument is the data: *ggplot(data = X)*. It creates an empty frame.
+- The second argument is the geometry (type of plot): *geom_*. It adds a layer with the type of plot we want to show.
+- The third argument is the aesthetic, to select the variables and the properties: *mapping = aes()*
+
+```{r}
+# GGPLOT (example no 1)
+ggplot(data = X[ ,1:2])
+# GGPLOT (example no 2.1)
+ggplot(data = X[ ,1:2]) +
+  geom_point(mapping = aes(X$Sepal.Length, X$Sepal.Width))
+# GGPLOT (example no 2.2)
+ggplot(data = X[ ,1:2]) +
+  geom_point(mapping = aes(Sepal.Length, Sepal.Width))
+# GGPLOT (example no 2.2)
+ggplot(data = X) +
+  geom_point(mapping = aes(Sepal.Length, Sepal.Width))
+# GGPLOT (example no 3)
+ggplot(data = X) +
+  geom_point(mapping = aes(Sepal.Length, Sepal.Width)) +
+  ggtitle("Scatter Plot") + xlab("Sepal Length") + ylab("Sepal Width")
+```
+
+
+
+
