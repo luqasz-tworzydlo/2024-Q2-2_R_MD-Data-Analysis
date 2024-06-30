@@ -22,7 +22,7 @@ You can define bullet list or numbered list:
   - Bisont Grass
   - Soplica
 
-# 1.2 Formula
+# 1.2. Formula
 
 Here you can define formula
 
@@ -54,12 +54,35 @@ Y <- as.matrix(X[ ,1:4])
 To handle data you can use the following code:
 
 ```{r}
-X[10, 2]     # selection of one element in the Data Frame (or matrix)
-X[5:20, 1:3] # selection of an interval
-X[5:20, ]    # the empty space select all the columns or rows
+X[10, 2]       # selection of one element in the Data Frame (or matrix)
+X[5:20, 1:3]   # selection of an interval
+X[5:20, ]      # the empty space select all the columns or rows
+X$Sepal.Length # the symbol $ is used to select a column in the data frame
 ```
+# 2.1. Plots in R
 
+```{r}
+boxplot(X$Sepal.Length, main = "Box Plot of the Sepal Length of the IRIS Flowers", col = "blue", horizontal = T)
+```
+The elements of the box-plot are reported below:
 
+- **Q1**. It is the *First Quartile*. It leaves 25% of units on the left and 75% of units on the right. *Left side of the box*
+- **Me**. It is the *Median=Q2*. It leaves 50% of units on left and right. *Bold Line in the middle of the box*
+- **Q3**. It is the *Third Quartile*. It leaves 75% of the units on the left and 25% of the units on the right. *Right side of the box*
+- In case of **no outliers**, the whiskers are defined as:
+  - **Xmin** is the left whiskers
+  - **Xmax** is the right whiskers
+- In case of **outliers**, the whiskers are defined as:
+  - **Linf** = Q1 - 1.5 (Q3-Q1): Lower Limit
+  - **Lsup** = Q1 + 1.5 (Q3-Q1): Upper Limit
+  
+```{r}
+# no.1.1
+boxplot(X[ ,1:4])
+# no.1.2
+boxplot(X[ ,1:4], main = "Box Plot of all quantitative variables of IRIS data", col = terrain.colors(4))
+```
+  
 
 
 
