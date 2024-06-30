@@ -77,12 +77,47 @@ The elements of the box-plot are reported below:
   - **Lsup** = Q1 + 1.5 (Q3-Q1): Upper Limit
   
 ```{r}
-# no.1.1
+# just a boxplot
 boxplot(X[ ,1:4])
-# no.1.2
+# boxplot with a title and colors
 boxplot(X[ ,1:4], main = "Box Plot of all quantitative variables of IRIS data", col = terrain.colors(4))
 ```
   
+```{r}
+boxplot(X$Sepal.Width ~ X$Species, main = "Box Plot of Sepal Width considering the 3 types of flowers", xlab = "Type of IRIS Flowers", ylab = "Sepal Width", col = terrain.colors(4))
+```
+
+The *tilde symbol* is obtained by:
+
+- these doesn't work [*]:
+  - MAC: option + 5
+  - WIN: ALT + 125/6
+- these works [*]:
+  - MAC: shift + button before no.1
+  - WIN: shift + button before no.1
+
+# 2.2. Bar Plot
+
+Bar Plot can be used for **Qualitative Data** and for **Categorized Quantitative Data**. The first step to create a Bar Plot is to generate a *Table of Frequency*.
+
+```{r}
+T <- table(X$Species)
+T
+```
+
+```{r}
+barplot(T, main = "Bar Plot of Type of flowers", xlab = "Type of flowers", ylab = "Absolute Frequency", col = terrain.colors(4))
+```
+
+# 2.3. Pie Chart
+
+It is based on the frequency table.
+
+```{r}
+pie(T, main = "Pie Chart", col = terrain.colors(4))
+```
+
+# 2.4. Histogram Chart
 
 
 
