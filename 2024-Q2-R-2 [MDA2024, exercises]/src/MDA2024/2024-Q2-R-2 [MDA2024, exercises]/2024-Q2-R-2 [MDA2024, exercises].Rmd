@@ -536,7 +536,98 @@ To test the regression parameters it is possible to use the *t-value* or the *p-
 In this case study the estimated regression coefficient $\beta_1$ is **statistically significant**, since the *t-value* is **-18.15** (< 2) and the *p-value* is **2e-16** (< 5%).
 It means that the *number of mile per gallon* (hwy) depends by the *power of the engine* (displ), so by increasing the *displ* of 1 unit, the *hwy* will decrease by **-3.5306**.
 
-# 7. Principal Component Analysis (PCA) [ BONUS ]
+# 7. Principal Component Analysis (PCA)
+
+```{r}
+library(FactoMineR)
+library(factoextra)
+library(ggplot2)
+AUTO <- read.csv("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D2_AUTO/AUTO.csv", row.names=1, dec=",")
+```
+
+```{r}
+res.pca <- PCA(AUTO, graph = F)
+```
+
+## 7.1. Summary of the Results
+
+```{r}
+summary.PCA(res.pca)
+```
+
+## 7.2. Analyze the Eigen Values
+
+The aim of PCA is to create new "Latent Variable" (Factominer language = "Comp" - Components) as linear combination of the original ones. The number of LVs should be equal to *q* < than *p*, where "p" is the number of the manifest/original variables, in this cases study *p=10*.
+To select the number *q* of LVs we use the **eigenvalues** that represents the level of information extracted (explained variance extracted) from the original data. The rules to select the number of LVs are the following:
+- Eigenvalues greater than 1: $\lambda > 1$
+- Cumulative percentage of explained variance $> 70%$ ($>0.7$) (around $70%$)
+
+In this case, considering the two eigenvalues criteria, we should select for the $\lambda > 1$ four LVs; for the second criteria we select only 3 LVs. In general, for the exame report, you select max 2 LVs.
+
+```{r}
+round(res.pca$eig, 3)
+```
+
+## 7.3. Variables Plot (Variables Dimension - Circle of Correlation)
+
+The table reported below is called **table of correlation** or **table of the coordinates**, since in case the data are standardized, correlations and coordinations have the same values.
+The table reports the *correlations between the Manifest Variables (original variables) and the LVs* (*Dimensions* in Factominer language). The correlations represent also the coordinates of the manifest on the *Variable Plot*.
+
+For the interpretation:
+
+- Higher is the correlation (biggher is coordinate), higher is important of a MV for a specific LV (Dimension). In this case study, for the first LV (Dimension) the most important variable is *velocita* (speed), since the correlation with Dim.1 is *0.923*. For the second LV (Dim.2) is *cons_strada* (km per liter in Highway), since the correlation is *-0.805*. *The correlation have to be read in absolute way*
+- The **sign of the correlation** give information about the position of the manifest variables
+  - On the *first dimension* (x-axis): Positive Sign, the MV is on the right site; Negative Sign, the MV is on the left side.
+  - On the *second dimension* (y-axis): Positive Sign, the MV is on the upper side; Negative Sign, the MV is on the lower side [on the plot].
+
+- *We can give a meaning (interpretation)* to the Latent Variables (Dimensions), based on correlation table, that means on the position of the MVs on the *Variables Plot*.
+
+In this case study the two LVs (Dimensions) are so defined:
+- *LV_1-Dim.1*: Right Side: *Cilindrata, Cavalli, Velocita*; Left Side: *Affidabilita (reliability)*
+- *LV_2-Dim.2*: Upper Side: *Lunghezza, Larghezza (lenght, large)*; Lower Side: *cons_strada (km per liter)*
+
+```{r}
+round(res.pca$var$coord, 3)
+```
+
+```{r}
+plot.PCA(res.pca, choix = "var")
+```
+It is possible to evaluate the **correlation between MVs**, by using the angles between the vectors (arrows):
+
+- When the angle is 90 degree (about) there is no correlation. For instance between *larghezza* and *cavalli*
+- When the angle is < 90, there is *positive correlation*. For instance between *larghezza* and *lunghezza*
+- When the angle is > 90, there is *negative correlation*. For instance between *velocita* and *affidabilita*
+
+The table reported below is the *Table of $\cos^2$** that gives information about the quality of the graphical representation about the MVs. The interpretation is made as follow:
+
+- 0.00 < $\cos^2$ <= 0.25: Low Quality
+- 0.25 < $\cos^2$ <= 0.50: Medium-Low Quality
+- 0.50 < $\cos^2$ <= 0.75: Medium-High Quality
+- 0.75 < $\cos^2$ <= 1.00: High Quality
+
+For instance, in the case study, *cavalli* has Medium-High Quality ($\cos^2 = 0.721$) and *velocita* has High Quality since $\cos^2 = 0.825$.
+
+```{r}
+round(res.pca$var$cos2, 3)
+```
+
+## 7.4. Units Plot
+
+The table reported below is called **Table of the Units Coordinates** and gives information about the position of the units, in this case study about the *cars*, on the plot, based on the meaning (interpretation) given by the *Variable Plot*. In the Units Plot, the coordinates are not the correlations.
+
+```{r}
+round(res.pca$ind$coord, 3)
+```
+
+```{r}
+plot.PCA(res.pca, choix = "ind")
+```
+
+
+
+
+## [BONUS]
 
 The Principal Component Analysis has the following aims and characteristics:
 
