@@ -402,4 +402,79 @@ ggplot(data = Y) +
   geom_smooth(mapping = aes(displ, hwy))
 ```
 
+### 5.5.1. Smooting Plot with "different type of line" [*]
+
+```{r}
+# First Example
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy, linetype = class))
+# Second Example
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy, linetype = drv))
+```
+
+### 5.5.2. Smooting Plot with "Facet Wrap" [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy)) +
+  facet_wrap(~ drv)
+```
+
+### 5.5.3. Smooting Plot with "color" [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy, color = drv))
+```
+
+### 5.5.4. Smooting Plot with "group" [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy, group = drv))
+```
+
+### 5.5.5. Smooting Plot combining different layers [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_point(mapping = aes(displ, hwy, color = drv)) +
+  geom_smooth(mapping = aes(displ, hwy, color = drv))
+```
+
+# 6. Regression Model [*]
+
+In regression model we need to define the *dependent* and *independent* variables. In our case the model is define as follow:
+
+- *Y(Dependent/Outcome Variable)* = **hwy**. The variable defines the number of miles (km) per Gallon (liter) on the highway.
+- *X(Independent/Input Variable)* = **displ**. The variable defines the power of the engine (horse power).
+
+In the first place we need to create a scatter plot (correlation plot).
+
+## 6.1. Regression Model: Plot [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_point(mapping = aes(displ, hwy)) +
+  geom_smooth(method = lm, mapping = aes(displ, hwy))
+```
+
+## 6.2. Regression Model: Different Plot per each group [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_point(mapping = aes(displ, hwy, color  = drv)) +
+  geom_smooth(method = lm, mapping = aes(displ, hwy, color = drv))
+
+```
+
+## 6.3. Regression Model: Parameters Estimation [*]
+
+```{r}
+res.reg <- lm(hwy ~ displ, data = Y)
+summary(res.reg)
+```
+
+
 
