@@ -31,15 +31,26 @@ the formula can be reported in the text: $\mu = 1/n \sum X_i$
 
 ## 1.3. Import Data (CSV) [*]
 
+- Pre-trained Models:
+  - https://www.kaggle.com/models
+
+- Open psychology data [raw data]:
+  - http://openpsychometrics.org/_rawdata/
+
+- Info about used data [DS-3]:
+  - openpsychometrics.org/tests/SD3/
+    - Dark Triad Personality Test [data]
+    - SD-3 stands for Short Dark Triad
+
 ```{r}
 data_SD3 <- read.delim("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D1_SD3/data_SD3.csv", stringsAsFactors=TRUE)
 ```
 
 ## [ 1.3. BONUS ]
 
-Imported:
-- Forbes2000.csv
-- glass.csv
+- Imported:
+  - Forbes2000.csv
+  - glass.csv
 
 ```{r}
 Forbes2000 <- read.csv("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D0_Data/Forbes2000.csv", stringsAsFactors=TRUE)
