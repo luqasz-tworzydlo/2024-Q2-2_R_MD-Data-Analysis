@@ -2,3 +2,35 @@
 title: "My First Notebook MDA2024"
 output: html_notebook
 ---
+
+# Introduction
+
+
+# 1. Data Description
+
+# 1.1. Sample Selected
+
+You can define bullet list or numbered list:
+
+- Pizza
+- Pasta
+- Cafe
+  - Espresso
+  - Macchiato
+  - Cappuccino
+- Vodka
+  - Bisont Grass
+  - Soplica
+
+# 1.2 Formula
+
+Here you can define formula
+
+$$ y = \beta_0 + \beta_1X + \epsilon $$
+the formula can be reported in the text: $\mu = 1/n \sum X_i$
+
+# 2. Data Analysis
+
+
+
+
