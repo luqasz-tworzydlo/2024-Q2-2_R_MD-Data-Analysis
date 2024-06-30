@@ -35,6 +35,20 @@ the formula can be reported in the text: $\mu = 1/n \sum X_i$
 data_SD3 <- read.delim("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D1_SD3/data_SD3.csv", stringsAsFactors=TRUE)
 ```
 
+## [ 1.3. BONUS ]
+
+Imported:
+- Forbes2000.csv
+- glass.csv
+
+```{r}
+Forbes2000 <- read.csv("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D0_Data/Forbes2000.csv", stringsAsFactors=TRUE)
+```
+
+```{r}
+glass <- read.csv("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D0_Data/glass.csv", stringsAsFactors=TRUE)
+```
+
 # 2. Data Analysis
 To add R code in the Notebook we need to use the **Chunk**.
 
@@ -65,7 +79,7 @@ X[5:20, 1:3]   # selection of an interval
 X[5:20, ]      # the empty space select all the columns or rows
 X$Sepal.Length # the symbol $ is used to select a column in the data frame
 ```
-# 2.1. Plots in R
+## 2.1. Plots in R
 
 ```{r}
 boxplot(X$Sepal.Length, main = "Box Plot of the Sepal Length of the IRIS Flowers", col = "blue", horizontal = T)
@@ -117,7 +131,7 @@ boxplot(X[ ,1:4], main = "Box-Plot with all the Variables", col = "blue", horizo
 boxplot(X$Sepal.Width ~ X$Species, main = "Box-Plot about Sepal Width with different type of IRIS Flowers")
 ```
 
-# 2.2. Bar Plot
+## 2.2. Bar Plot
 
 Bar Plot can be used for **Qualitative Data** and for **Categorized Quantitative Data**. The first step to create a Bar Plot is to generate a *Table of Frequency*.
 
@@ -130,7 +144,7 @@ T
 barplot(T, main = "Bar Plot of Type of flowers", xlab = "Type of flowers", ylab = "Absolute Frequency", col = terrain.colors(4))
 ```
 
-# 2.3. Pie Chart
+## 2.3. Pie Chart
 
 It is based on the frequency table.
 
@@ -138,7 +152,7 @@ It is based on the frequency table.
 pie(T, main = "Pie Chart", col = terrain.colors(4))
 ```
 
-# 2.4. Histogram Chart
+## 2.4. Histogram Chart
 
 Histogram is a plot used only for **Quantitative Data**, it is based on a frequency tables in classes. The *R* function is called *hist* and the input is a simple distribution of a quantitative variable.
 
@@ -466,7 +480,6 @@ ggplot(data = Y) +
 ggplot(data = Y) +
   geom_point(mapping = aes(displ, hwy, color  = drv)) +
   geom_smooth(method = lm, mapping = aes(displ, hwy, color = drv))
-
 ```
 
 ## 6.3. Regression Model: Parameters Estimation [*]
@@ -475,6 +488,176 @@ ggplot(data = Y) +
 res.reg <- lm(hwy ~ displ, data = Y)
 summary(res.reg)
 ```
+The regression coefficients are defined as follow:
 
+- $\beta_0$ is the intercept and is the value of *Y* when *X* is equal to zero
+- $\beta_1$ is the regression coefficient and is the slope of the line. It is the value of *Y* when there is a variant of *X* equal to 1: $\Delta_x=1$
 
+### 6.3.1. Regression Parameters
+
+The results of the regression model showed that the *estimated* $\beta_0$ (the intercept) is equal to **35.6977** and the estimated $\beta_1$ (the regression coefficient/slope) is equal to **-3.3506**.
+
+### 6.3.2. Godness of Fit
+
+The quality of the model is measured by the godness of fix index $R^2$ that is for this case study equal to **0.585**. The $R^2$ is interpreted as follow:
+
+- 0.00 < $R^2$ <= 0.25 Low Quality
+- 0.25 < $R^2$ <= 0.50 Medium-Low Quality
+- 0.50 < $R^2$ <= 0.75 Medium-High Quality
+- 0.75 < $R^2$ < 1.00 High Quality
+- $R^2$ = 0 Non connection between *Y* and *X*. The result will be on horizontal line
+- $R^2$ = 1 Perfect connection between *Y* and *X*. The data points will be exactly on the regression line
+
+In this case study we have a Medium-High Quality of the model.
+
+### 6.3.3. Test on the estimated Regression Parameters
+
+To test the regression parameters it is possible to use the *t-value* or the *p-value*, as reported below:
+
+- Approach by using the *t-value*:
+  - -2 < *t-value* < 2 we accept the null hypothesis (BAD). The relation between *Y* and *X* is **not statistically significant**.
+  - *t-value* > 2 we reject the null hypothesis (GOOD). The relation between *Y* and *X* is **statistically significant**
+  - *t-value* < -2 we reject the null hypothesis (GOOD). The relation between *Y* and *X* is **statistically significant**.
+- Approach by using the *p-value*:
+  - *p-value* > 0.05 (5%) we accept the null hypothesis (BAD). The relation between *Y* and *X* is **not statistically significant**.
+  - *p-value* < 0.05 (5%) we reject the null hypothesis (GOOD). The relation between *Y* and *X* is **statistically significant**.
+
+In this case study the estimated regression coefficient $\beta_1$ is **statistically significant**, since the *t-value* is **-18.15** (< 2) and the *p-value* is **2e-16** (< 5%).
+It means that the *number of mile per gallon* (hwy) depends by the *power of the engine* (displ), so by increasing the *displ* of 1 unit, the *hwy* will decrease by **-3.5306**.
+
+# 7. Principal Component Analysis (PCA) [ BONUS ]
+
+The Principal Component Analysis has the following aims and characteristics:
+
+- PCA is only for **Quantitative DATA**
+- Data Reduction by creating a new set of Latent Variables in a number *q* < *p*, where *p* is the the numer of the manifest/original variables.
+- Discover *Latent Traits*/*Latent Variables* in the data. 
+
+```{r}
+library(FactoMineR)
+library(ggplot2)
+library(factoextra)
+```
+
+For the PCA we will use the *PCA* function in the Package *FactoMineR*.
+
+```{r}
+Y <- mpg
+```
+
+## 7.1 PCA for mpg Data
+
+```{r}
+res.pca <- PCA(Y[,c(3,5,8,9)])
+summary(res.pca)
+```
+
+## 7.2 PCA on mtcars
+
+```{r}
+Z <- mtcars
+```
+
+```{r}
+res.pca1 <- PCA(Z)
+summary(res.pca1)
+```
+
+### 7.2.1 Eigenvalues interpretation 
+
+The *eigenvalues* measure the level of information retained by the PCA. They show the *explained variance* from the data and help us to select the number of *Latent Variables* (or Latent Traits, Principal Components, Dimensions). 
+The rules to select the number of LVs are:
+- Eigenvalues greater than 1. $\lambda > 1$.
+- Cumulative percentage of explained variance > 0.7 (70%)
+
+In our case study we select two components. Both components have eigenvalue greater than 1 and with and Cumulative percentage of explained variance equal to 84.172%.
+
+```{r}
+round(res.pca1$eig,3)
+```
+
+### 7.2.2 Variables Plot (Variables Dimension)
+
+Below we can read the table with **correlations** between the Manifest Variables (MVs) and the Latent Variables (Dimensions). The correlations are also the **coordinates** of the manifest variables on the variables plot.
+
+For the interpretation:
+
+- Higher is the correlation(bigger is the coordinate), higher is the importance of the manifest variable for the latent variable(Dimension).
+- The **sign of correlation** give information about the position of the manifest variable:
+  + On the *first dimension*: Positive sign, the MV is on the right side; Negative sign, the MV is on the left side
+  + On the *second dimension*: Positive sign, the MV is on the upper side; Negative sign, the MV is on the lower side
+- We can give a meaning to the two Latent Variables (Dimensions) based on the correlation and the sign.
+
+In our case study, the LVs (dimensions) are so defined:
+
+- $LV_1$: *Right side* (cyl, disp, hp, wt); *Left side* (mpg, drat, vs)
+- $LV_2$. *Upper side* (am, gear, carb); *Lower side* (qsec)
+
+```{r}
+round(res.pca1$var$coord[,1:2],3)
+```
+
+it is possible to evaluate the correlations between the manifest variables by using the angle between the vectors. For instance, the variables *hp*, *cyl*, *disp* and *wt* are all positively correlated since all the angles are less then 90°.
+
+```{r}
+plot.PCA(res.pca1, axes = c(1,2), choix = "var")
+```
+
+The quality of the projected manifest variables is given by the **Cosine squared**. 
+
+Below you can find the interpretation intervals:
+
+- 0.00 < $Cos^2$ <= 0.25: Low Quality
+- 0.25 < $Cos^2$ <= 0.50: Medium-Low Quality
+- 0.50 < $Cos^2$ <= 0.75: Medium-High Quality
+- 0.75 < $Cos^2$ <= 1.00: High Quality
+
+```{r}
+round(res.pca1$var$cos2[,1:2],3)
+```
+
+### 7.2.3 Units Plot
+
+In the units plot we can evaluate the clusters of units. The clusters define group of units that are similar on the basis of the Latent Variables estimated.
+
+```{r}
+plot.PCA(res.pca1, axes = c(1,2), choix = "ind")
+```
+## 7.3 PCA with Factoextra Package
+
+```{r}
+library(factoextra)
+```
+
+### 7.3.1 Variables Plot
+
+```{r}
+fviz_pca_var(res.pca1)
+```
+
+### 7.3.2 Units Plot
+
+```{r}
+fviz_pca_ind(res.pca1)
+```
+
+### 7.3.3 BiPlot
+
+Biplot is a plot where both units and variables are represented.
+
+```{r}
+fviz_pca_biplot(res.pca1)
+```
+
+## 7.3.4 Graphical representation of the **Eigenvalues**
+
+```{r}
+fviz_screeplot(res.pca1)
+```
+
+## 7.3.5 Graphical representation of the **Contributions** of the manifest variables
+
+```{r}
+fviz_pca_contrib(res.pca1, choice = "var")
+```
 
