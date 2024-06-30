@@ -8,7 +8,7 @@ output: html_notebook
 
 # 1. Data Description
 
-# 1.1. Sample Selected
+## 1.1. Sample Selected
 
 You can define bullet list or numbered list:
 
@@ -22,12 +22,18 @@ You can define bullet list or numbered list:
   - Bisont Grass
   - Soplica
 
-# 1.2. Formula
+## 1.2. Formula
 
 Here you can define formula
 
 $$ y = \beta_0 + \beta_1X + \epsilon $$
 the formula can be reported in the text: $\mu = 1/n \sum X_i$
+
+## 1.3. Import Data (CSV) [*]
+
+```{r}
+data_SD3 <- read.delim("~/RProjects/2024-Q2-R-2 [MDA2024, exercises]/D1_SD3/data_SD3.csv", stringsAsFactors=TRUE)
+```
 
 # 2. Data Analysis
 To add R code in the Notebook we need to use the **Chunk**.
@@ -369,6 +375,31 @@ ggplot(data = Y) +
 # example 2
 ggplot(data = Y) +
   geom_histogram(mapping = aes(hwy))
+```
+
+## 5.3. Facet Wrap with 1 grup variable [*]
+
+With Facet Wrap layer (option) we can create sub-plots based on a categorical variable.
+
+```{r}
+ggplot(data = Y) +
+  geom_point(mapping = aes(displ, hwy)) +
+  facet_wrap(~drv)
+```
+
+## 5.4. Facet Wrap with 2 grup variables [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_point(mapping = aes(displ, hwy)) +
+  facet_wrap(drv ~ class)
+```
+
+## 5.5. Smooting Plot [*]
+
+```{r}
+ggplot(data = Y) +
+  geom_smooth(mapping = aes(displ, hwy))
 ```
 
 
