@@ -228,5 +228,76 @@ p
 p + theme(legend.position = "bottom")
 ```
 
-## 4.3. Use the mpg data (mpg Fuel economy data from 1999 to 2008 for 38 popular model of cars)
+# 5. Use the mpg data (mpg Fuel economy data from 1999 to 2008 for 38 popular model of cars)
+
+A data frame with 234 rows and 11 variables:
+
+- *manufacturer* brand name
+- *model* model name
+- *displ* engine displacement, in litres (power of the engine)
+- *year* year of manufacture
+- *cyl* number of cylinders
+- *trans* type of transmission
+- *drv* the type of drive train, where f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+- *cty* city miles per gallon (km per liter in town)
+- *hwy* highway miles per gallon (km per liter in highway)
+- *fl* fuel type
+- *class* "type" of car
+
+```{r}
+Y <- mpg
+```
+
+```{r}
+summary(Y)
+head(Y)
+```
+
+## 5.1. Bar Chart
+
+```{r}
+table(Y$cyl)
+```
+
+```{r}
+# first example: factor(cyl) as a color ( vertical bar chart )
+ggplot(data = Y) +
+  geom_bar(mapping = aes(cyl, fill = factor(cyl)))
+# second example: class as a color ( vertical bar chart )
+ggplot(data = Y) +
+  geom_bar(mapping = aes(cyl, fill = class))
+# third example: class instead cyl ( vertical bar chart )
+ggplot(data = Y) +
+  geom_bar(mapping = aes(cyl, fill = class))
+# fourth example: class instead cyl ( horizontal bar chart )
+ggplot(data = Y) +
+  geom_bar(mapping = aes(cyl, fill = class)) + coord_flip()
+# fifth example: class instead cyl ( horizontal bar chart & legend at the bottom )
+ggplot(data = Y) +
+  geom_bar(mapping = aes(cyl, fill = class)) + coord_flip() + theme(legend.position = "bottom")
+```
+
+## 5.2. Histogram
+
+```{r}
+# example no 1.1
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(cty))
+# example no 1.2
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(cty, colour = class))
+# example no 1.3
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(cty, fill = class))
+# example no 1.4
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(cty, fill = "red"))
+# example no 1.5
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(cty, fill = factor(cty)))
+# example 2
+ggplot(data = Y) +
+  geom_histogram(mapping = aes(hwy))
+```
+
 
