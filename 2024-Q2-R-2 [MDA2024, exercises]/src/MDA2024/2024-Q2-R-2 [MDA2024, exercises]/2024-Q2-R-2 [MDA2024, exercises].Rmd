@@ -93,7 +93,11 @@ X$Sepal.Length # the symbol $ is used to select a column in the data frame
 ## 2.1. Plots in R
 
 ```{r}
-boxplot(X$Sepal.Length, main = "Box Plot of the Sepal Length of the IRIS Flowers", col = "blue", horizontal = T)
+# boxplot - horizontal True (T) [ with an error ]
+# error type: Error in if (horizontal) plot.window(ylim = xlim, xlim = ylim, log = log,  :  the condition has length > 1
+# boxplot(X$Sepal.Length, main = "Box Plot of the Sepal Length of the IRIS Flowers", col = "blue", horizontal = T)
+# boxplot - horizontal False (F) [ without error ]
+boxplot(X$Sepal.Length, main = "Box Plot of the Sepal Length of the IRIS Flowers", col = "blue", horizontal = F)
 ```
 The elements of the box-plot are reported below:
 
@@ -624,10 +628,7 @@ round(res.pca$ind$coord, 3)
 plot.PCA(res.pca, choix = "ind")
 ```
 
-
-
-
-## [BONUS]
+## 7.5. [BONUS]
 
 The Principal Component Analysis has the following aims and characteristics:
 
@@ -647,14 +648,14 @@ For the PCA we will use the *PCA* function in the Package *FactoMineR*.
 Y <- mpg
 ```
 
-## 7.1 PCA for mpg Data
+## 7.5.1 PCA for mpg Data
 
 ```{r}
 res.pca <- PCA(Y[,c(3,5,8,9)])
 summary(res.pca)
 ```
 
-## 7.2 PCA on mtcars
+## 7.5.2 PCA on mtcars
 
 ```{r}
 Z <- mtcars
@@ -665,7 +666,7 @@ res.pca1 <- PCA(Z)
 summary(res.pca1)
 ```
 
-### 7.2.1 Eigenvalues interpretation 
+### 7.5.2.1 Eigenvalues interpretation 
 
 The *eigenvalues* measure the level of information retained by the PCA. They show the *explained variance* from the data and help us to select the number of *Latent Variables* (or Latent Traits, Principal Components, Dimensions). 
 The rules to select the number of LVs are:
@@ -678,7 +679,7 @@ In our case study we select two components. Both components have eigenvalue grea
 round(res.pca1$eig,3)
 ```
 
-### 7.2.2 Variables Plot (Variables Dimension)
+### 7.5.2.2 Variables Plot (Variables Dimension)
 
 Below we can read the table with **correlations** between the Manifest Variables (MVs) and the Latent Variables (Dimensions). The correlations are also the **coordinates** of the manifest variables on the variables plot.
 
@@ -718,32 +719,32 @@ Below you can find the interpretation intervals:
 round(res.pca1$var$cos2[,1:2],3)
 ```
 
-### 7.2.3 Units Plot
+### 7.5.2.3 Units Plot
 
 In the units plot we can evaluate the clusters of units. The clusters define group of units that are similar on the basis of the Latent Variables estimated.
 
 ```{r}
 plot.PCA(res.pca1, axes = c(1,2), choix = "ind")
 ```
-## 7.3 PCA with Factoextra Package
+## 7.5.3 PCA with Factoextra Package
 
 ```{r}
 library(factoextra)
 ```
 
-### 7.3.1 Variables Plot
+### 7.5.3.1 Variables Plot
 
 ```{r}
 fviz_pca_var(res.pca1)
 ```
 
-### 7.3.2 Units Plot
+### 7.5.3.2 Units Plot
 
 ```{r}
 fviz_pca_ind(res.pca1)
 ```
 
-### 7.3.3 BiPlot
+### 7.5.3.3 BiPlot
 
 Biplot is a plot where both units and variables are represented.
 
@@ -751,13 +752,13 @@ Biplot is a plot where both units and variables are represented.
 fviz_pca_biplot(res.pca1)
 ```
 
-## 7.3.4 Graphical representation of the **Eigenvalues**
+## 7.5.3.4 Graphical representation of the **Eigenvalues**
 
 ```{r}
 fviz_screeplot(res.pca1)
 ```
 
-## 7.3.5 Graphical representation of the **Contributions** of the manifest variables
+## 7.5.3.5 Graphical representation of the **Contributions** of the manifest variables
 
 ```{r}
 fviz_pca_contrib(res.pca1, choice = "var")
